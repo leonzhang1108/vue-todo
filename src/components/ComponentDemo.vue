@@ -1,7 +1,11 @@
 <template>
   <div>
-    <h1>{{ msg }}</h1>
-    <Child :child-msg='msg' @upMethod='changeMsg'/>
+    <div v-for="msg in msgs">
+      {{ msg }}
+    </div>
+    <template v-for="msg in msgs">
+      <Child :child-msg='msg' @upMethod='changeMsg'/>
+    </template>
   </div>
 </template>
 
@@ -14,12 +18,12 @@ export default {
   },
   data () {
     return {
-      msg: 'this is ComponentDemo'
+      msgs: ['111', '222', '333']
     }
   },
   methods: {
     changeMsg: function (msg) {
-      this.msg = 'parents: ' + msg
+      console.log(msg)
     }
   }
 }

@@ -8,14 +8,15 @@
 <script>
 export default {
   name: 'Child',
-  data () {
+  data: function () {
+    console.log(this)
     return {
-      msg: 'this is child'
+      msg: '123123'
     }
   },
   methods: {
-    inputChange: function () {
-      this.$emit('upMethod', this.msg)
+    inputChange: function (msg) {
+      console.log(msg)
     }
   }
 }
