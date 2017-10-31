@@ -1,11 +1,6 @@
 <template>
   <div id="app">
     <img src="./assets/logo.png">
-    <div class="router-links">
-      <router-link to="/todo/all">all</router-link>
-      <router-link to="/todo/done">done</router-link>
-      <router-link to="/todo/notdone">not done</router-link>
-    </div>
     <router-view/>
   </div>
 </template>

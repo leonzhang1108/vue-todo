@@ -1,5 +1,10 @@
 <template>
   <div class="todo-list-form">
+    <div class="router-links">
+      <router-link to="/todo/all">all</router-link>
+      <router-link to="/todo/done">done</router-link>
+      <router-link to="/todo/notdone">not done</router-link>
+    </div>
     <h1>todo list</h1>
     <div id="addNew">
       <input class='search-input' type="text" name="newItemInput" v-model="newItem" @keyup.enter='addItem()'>
