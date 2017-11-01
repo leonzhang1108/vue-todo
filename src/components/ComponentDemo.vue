@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div v-for="msg in msgs">
-      <h1>parent: {{ msg.content }}</h1>
+    <div v-for="(msg, index) in msgs">
+      <h1>parent{{ index + 1 }}: {{ msg.content }}</h1>
     </div>
-    <template v-for="msg in msgs">
-      <Child :child-msg='msg' />
+    <template v-for="(msg, index) in msgs">
+      <Child :child-msg='msg' :index='index' @onChildClick='childEvent'/>
     </template>
   </div>
 </template>
@@ -35,6 +35,12 @@ export default {
         })
       },
       deep: true
+    }
+  },
+  methods: {
+    childEvent: function (index) {
+      console.log('lalala')
+      console.log(`the index is ${index}`)
     }
   }
 }
