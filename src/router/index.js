@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import TodoList from '@/components/TodoList'
 import User from '@/components/User'
 import ComponentDemo from '@/components/ComponentDemo'
+import Tree from '@/components/Tree'
 
 Vue.use(Router)
 
@@ -23,6 +24,10 @@ export default new Router({
       path: '/componentdemo',
       name: 'ComponentDemo',
       component: ComponentDemo
+    }, {
+      path: '/tree',
+      name: 'Tree',
+      component: Tree
     }
   ]
 })
