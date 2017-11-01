@@ -5,7 +5,7 @@
         slot="msg"
         slot-scope="props"
       >
-        parent{{props.index + 1}}: {{ props.content }}
+        parent{{props.index + 1}}: {{ props.content | capitalize }}
       </h1>
     </TitleList>
     <ChildList 
@@ -54,6 +54,13 @@ export default {
     childEvent: function (index) {
       console.log('lalala')
       console.log(`the index is ${index}`)
+    }
+  },
+  filters: {
+    capitalize: function (value) {
+      if (!value) return ''
+      value = value.toString()
+      return value.charAt(0).toUpperCase() + value.slice(1)
     }
   }
 }

@@ -2,7 +2,7 @@
   <div class="child-item">
     <slot name="header"></slot>
     <h3 @click="childClick">child{{ index + 1 }}: {{ msg.content }}</h3>
-    <input v-model="msg.content" test-content='true'/>
+    <input v-focus="index" v-model="msg.content" />
     <slot></slot>
     <slot name="footer"></slot>
   </div>
@@ -23,6 +23,13 @@ export default {
   methods: {
     childClick: function () {
       this.$emit('onChildClick', this.index)
+    }
+  },
+  directives: {
+    focus: {
+      inserted: function (el, binding, vnode) {
+        if (binding.value === 0) el.focus()
+      }
     }
   }
 }
