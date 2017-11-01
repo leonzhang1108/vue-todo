@@ -29,7 +29,9 @@ export default {
   },
   methods: {
     contentClick: function () {
-      console.log(this.msgs)
+      this.msgs.forEach((msg) => {
+        console.log(msg.content)
+      })
     }
   }
 }
