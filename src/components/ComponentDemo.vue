@@ -1,20 +1,33 @@
 <template>
   <div>
-    <div v-for="(msg, index) in msgs">
-      <h1>parent{{ index + 1 }}: {{ msg.content }}</h1>
-    </div>
-    <template v-for="(msg, index) in msgs">
-      <Child :child-msg='msg' :index='index' @onChildClick='childEvent'/>
-    </template>
+    <TitleList :msgs="msgs">
+      <h1
+        slot="msg"
+        slot-scope="props"
+      >
+        parent{{props.index + 1}}: {{ props.content }}
+      </h1>
+    </TitleList>
+    <ChildList 
+      v-for="(msg, index) in msgs" 
+      key='index' :child-msg='msg' 
+      :index='index' 
+      @onChildClick='childEvent' 
+    >
+      <div slot="header">this is header</div>
+      <div slot="footer">this is footer</div>
+    </ChildList>
   </div>
 </template>
 
 <script>
-import Child from '@/components/Child'
+import TitleList from '@/components/Title'
+import ChildList from '@/components/Child'
 export default {
   name: 'ComponentDemo',
   components: {
-    Child
+    ChildList,
+    TitleList
   },
   data () {
     return {
