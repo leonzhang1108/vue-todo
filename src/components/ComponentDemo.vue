@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="msg in msgs">
-      <h1 @click="contentClick">parent: {{ msg.content }}</h1>
+      <h1>parent: {{ msg.content }}</h1>
     </div>
     <template v-for="msg in msgs">
       <Child :child-msg='msg' />
@@ -27,11 +27,14 @@ export default {
       }]
     }
   },
-  methods: {
-    contentClick: function () {
-      this.msgs.forEach((msg) => {
-        console.log(msg.content)
-      })
+  watch: {
+    msgs: {
+      handler (newMsgs, oldMsgs) {
+        newMsgs.forEach(msg => {
+          console.log(msg.content)
+        })
+      },
+      deep: true
     }
   }
 }
