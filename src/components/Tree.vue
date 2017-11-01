@@ -1,9 +1,8 @@
 <template>
-  <div>
-    <ggg :msg='msg'></ggg>
-  </div>
+  <Item :msg='msg'></Item>
 </template>
 <script>
+import Item from './TreeItem'
 export default {
   data () {
     return {
@@ -36,22 +35,7 @@ export default {
     }
   },
   components: {
-    ggg: {
-      name: 'gs',
-      template: `
-      <ul>
-        <li v-for='a in msg' @click.stop.self='show=!show'>
-          {{a.text}}
-          <gs :msg='a.next' v-if='show' ></gs>
-        </li>
-      </ul>`,
-      props: ['msg'],
-      data () {
-        return {
-          show: false
-        }
-      }
-    }
+    Item
   }
 }
 </script>
