@@ -1,10 +1,10 @@
 <template>
   <div>
     <div v-for="msg in msgs">
-      {{ msg }}
+      <h1 @click="contentClick">parent: {{ msg.content }}</h1>
     </div>
     <template v-for="msg in msgs">
-      <Child :child-msg='msg' @upMethod='changeMsg'/>
+      <Child :child-msg='msg' />
     </template>
   </div>
 </template>
@@ -18,12 +18,18 @@ export default {
   },
   data () {
     return {
-      msgs: ['111', '222', '333']
+      msgs: [{
+        content: 'first msg'
+      }, {
+        content: 'second msg'
+      }, {
+        content: 'thrid msg'
+      }]
     }
   },
   methods: {
-    changeMsg: function (msg) {
-      console.log(msg)
+    contentClick: function () {
+      console.log(this.msgs)
     }
   }
 }
