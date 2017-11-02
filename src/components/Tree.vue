@@ -1,12 +1,21 @@
 <template>
-  <Item class="tree-form" :msg='msg' @add='add'></Item>
+  <div class="tree-wrap">
+    <div class="add-btn add-btn-top" @click.self="addRoot">+</div>
+    <Item class="tree-form" :msg='msg' @add='add'></Item>
+  </div>
 </template>
 <script>
 import Item from './TreeItem'
 export default {
   methods: {
     add: function (i, a) {
-      a.next.push({
+      this.pushNewMsg(a.next)
+    },
+    addRoot: function () {
+      this.pushNewMsg(this.msg)
+    },
+    pushNewMsg: function (data) {
+      data.push({
         text: new Date().getTime(),
         next: []
       })
@@ -14,18 +23,7 @@ export default {
   },
   data () {
     return {
-      msg: [
-        {
-          text: new Date().getTime(),
-          next: []
-        }, {
-          text: new Date().getTime() + 1,
-          next: []
-        }, {
-          text: new Date().getTime() + 2,
-          next: []
-        }
-      ]
+      msg: []
     }
   },
   components: {
@@ -34,6 +32,15 @@ export default {
 }
 </script>
 <style>
+.tree-wrap {
+  position: relative;
+}
+.add-btn-top {
+  position: absolute;
+  left: 5px;
+  top: 20px;
+  cursor: pointer;
+}
 ul {
   margin: 0 0 0 25px;
   padding: 0;
