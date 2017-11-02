@@ -38,6 +38,9 @@ export default {
 }
 </script>
 <style>
+body {
+  user-select: none;
+}
 .tree-wrap {
   position: relative;
 }
