@@ -27,9 +27,19 @@ export default {
             }
           ]
         }, {
-          text: 2
+          text: 2,
+          next: [
+            {
+              text: '2-1'
+            }
+          ]
         }, {
-          text: 3
+          text: 3,
+          next: [
+            {
+              text: '3-1'
+            }
+          ]
         }
       ]
     }
