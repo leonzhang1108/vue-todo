@@ -10,13 +10,13 @@
           {{ show[i].showChild ? '↓' : '→' }}
         </span>
         <span v-else class="arrow">●</span>
-        <span v-if="!show[i].showInput" class="content" @click="toogleInput(i)">{{a.text}}</span>
-        <span v-else class="content">
+        <span v-if="!show[i].showInput" @click="inputToogle(i)">{{a.text}}</span>
+        <span v-else>
           <input v-model="a.text" v-focus 
             @blur="inputBlur(i)"
             @keyup.enter='inputBlur(i)' />
         </span>
-        <span class="add-btn" @click.stop='add(i, a)'>+</span>
+        <span class="add-btn" @click.stop='add(i, a, true)'>+</span>
       </div>
       <tree-items @add='add' :msg='a.next' v-if='show[i].showChild'></tree-items>
     </li>
@@ -53,11 +53,11 @@ export default {
     }
   },
   methods: {
-    add: function (i, a) {
+    add: function (i, a, isRoot) {
       this.$emit('add', i, a)
-      this.show[i].showChild = true
+      if (isRoot) this.show[i].showChild = true
     },
-    toogleInput: function (i) {
+    inputToogle: function (i) {
       this.show[i].showInput = !this.show[i].showInput
     },
     inputBlur: function (i) {

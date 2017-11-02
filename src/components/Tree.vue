@@ -86,6 +86,9 @@ ul {
   background: #fff;
   display: inline;
 }
+.text:hover {
+  background: #F2F5FA;
+}
 .add-btn {
   background: #ccc;
   width: 20px;
