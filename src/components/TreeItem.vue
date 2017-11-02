@@ -1,18 +1,19 @@
 <template>
   <ul>
-    <li class="tree-li" v-for='(a, i) in msg'>
+    <li class="tree-li" v-for='(a, i) in message'>
       <div class="text" >
-        <span 
+        <span
+          v-if="a.next && a.next.length !== 0"
           class="arrow"
           @click.stop='show[i].state =! show[i].state'
-          v-if="a.next && a.next.length !== 0"
         > 
           {{ show[i].state ? '↓' : '→' }}
         </span>
+        <span v-else class="arrow">●</span>
         <span class="content">{{a.text}}</span>
-        <span class="add-btn" @click.stop='' v-if="a.next && a.next.length !== 0">+</span>
+        <span class="add-btn" @click.stop='add(i, a)'>+</span>
       </div>
-      <tree-items :msg='a.next' v-if='show[i].state' ></tree-items>
+      <tree-items @add='add' :msg='a.next' v-if='show[i].state' ></tree-items>
     </li>
   </ul>
 </template>
@@ -27,7 +28,24 @@ export default {
     for (let i = 0; i < length; i++) {
       show.push({ state: false })
     }
-    return { show }
+    return {
+      show,
+      message: this.msg
+    }
+  },
+  watch: {
+    msg: {
+      handler (newMsgs, oldMsgs) {
+        this.show.push({state: false})
+      },
+      deep: true
+    }
+  },
+  methods: {
+    add: function (i, a) {
+      this.$emit('add', i, a)
+      this.show[i].state = true
+    }
   }
 }
 </script>

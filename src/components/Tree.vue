@@ -1,45 +1,29 @@
 <template>
-  <Item class="tree-form" :msg='msg'></Item>
+  <Item class="tree-form" :msg='msg' @add='add'></Item>
 </template>
 <script>
 import Item from './TreeItem'
 export default {
+  methods: {
+    add: function (i, a) {
+      a.next.push({
+        text: new Date().getTime(),
+        next: []
+      })
+    }
+  },
   data () {
     return {
       msg: [
         {
-          text: 1,
-          next: [
-            {
-              text: '1-1',
-              next: [
-                {
-                  text: '1-1-1',
-                  next: [
-                    {
-                      text: '1-1-1-1'
-                    }
-                  ]
-                }
-              ]
-            }, {
-              text: '1-2'
-            }
-          ]
+          text: new Date().getTime(),
+          next: []
         }, {
-          text: 2,
-          next: [
-            {
-              text: '2-1'
-            }
-          ]
+          text: new Date().getTime() + 1,
+          next: []
         }, {
-          text: 3,
-          next: [
-            {
-              text: '3-1'
-            }
-          ]
+          text: new Date().getTime() + 2,
+          next: []
         }
       ]
     }
