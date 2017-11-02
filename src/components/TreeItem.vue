@@ -1,7 +1,17 @@
 <template>
   <ul>
-    <li v-for='(a, i) in msg'>
-      <div class="text" @click.stop='show[i].state=!show[i].state'>{{a.text}}</div>
+    <li class="tree-li" v-for='(a, i) in msg'>
+      <div class="text" >
+        <span 
+          class="arrow"
+          @click.stop='show[i].state =! show[i].state'
+          v-if="a.next && a.next.length !== 0"
+        > 
+          {{ show[i].state ? '↓' : '→' }}
+        </span>
+        <span class="content">{{a.text}}</span>
+        <span class="add-btn" @click.stop='' v-if="a.next && a.next.length !== 0">+</span>
+      </div>
       <tree-items :msg='a.next' v-if='show[i].state' ></tree-items>
     </li>
   </ul>
@@ -21,14 +31,5 @@ export default {
   }
 }
 </script>
-<style>
-ul {
-  -webkit-padding-start: 24px;
-}
-.text {
-  text-align: left;
-  cursor: pointer;
-}
-</style>
 
 
