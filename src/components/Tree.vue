@@ -23,7 +23,13 @@ export default {
   },
   data () {
     return {
-      msg: []
+      msg: [{
+        text: new Date().getTime(),
+        next: []
+      }, {
+        text: new Date().getTime() + 1,
+        next: []
+      }]
     }
   },
   components: {
