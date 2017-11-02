@@ -5,15 +5,20 @@
         <span
           v-if="a.next && a.next.length !== 0"
           class="arrow"
-          @click.stop='show[i].state =! show[i].state'
+          @click.stop='show[i].showChild =! show[i].showChild'
         > 
-          {{ show[i].state ? '↓' : '→' }}
+          {{ show[i].showChild ? '↓' : '→' }}
         </span>
         <span v-else class="arrow">●</span>
-        <span class="content">{{a.text}}</span>
+        <span v-if="!show[i].showInput" class="content" @click="toogleInput(i)">{{a.text}}</span>
+        <span v-else class="content">
+          <input v-model="a.text" v-focus 
+            @blur="inputBlur(i)"
+            @keyup.enter='inputBlur(i)' />
+        </span>
         <span class="add-btn" @click.stop='add(i, a)'>+</span>
       </div>
-      <tree-items @add='add' :msg='a.next' v-if='show[i].state' ></tree-items>
+      <tree-items @add='add' :msg='a.next' v-if='show[i].showChild'></tree-items>
     </li>
   </ul>
 </template>
@@ -26,7 +31,10 @@ export default {
     let show = []
     let length = this.msg ? this.msg.length : 0
     for (let i = 0; i < length; i++) {
-      show.push({ state: false })
+      show.push({
+        showChild: false,
+        showInput: false
+      })
     }
     return {
       show,
@@ -36,7 +44,10 @@ export default {
   watch: {
     msg: {
       handler (newMsgs, oldMsgs) {
-        this.show.push({state: false})
+        this.show.push({
+          showChild: false,
+          showInput: false
+        })
       },
       deep: true
     }
@@ -44,7 +55,21 @@ export default {
   methods: {
     add: function (i, a) {
       this.$emit('add', i, a)
-      this.show[i].state = true
+      this.show[i].showChild = true
+    },
+    toogleInput: function (i) {
+      this.show[i].showInput = !this.show[i].showInput
+    },
+    inputBlur: function (i) {
+      this.show[i].showInput = false
+    }
+  },
+  directives: {
+    focus: {
+      // 指令的定义
+      inserted: function (el) {
+        el.focus()
+      }
     }
   }
 }
