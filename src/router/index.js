@@ -1,9 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import TodoList from '@/components/TodoList'
-import User from '@/components/User'
-import ComponentDemo from '@/components/ComponentDemo'
-import Tree from '@/components/Tree'
 
 Vue.use(Router)
 
@@ -15,19 +11,19 @@ export default new Router({
     }, {
       path: '/todo/:type',
       name: 'Todo',
-      component: TodoList
+      component: resolve => require(['@/components/TodoList'], resolve)
     }, {
       path: '/user/:id',
       name: 'User',
-      component: User
+      component: resolve => require(['@/components/User'], resolve)
     }, {
       path: '/componentdemo',
       name: 'ComponentDemo',
-      component: ComponentDemo
+      component: resolve => require(['@/components/ComponentDemo'], resolve)
     }, {
       path: '/tree',
       name: 'Tree',
-      component: Tree
+      component: resolve => require(['@/components/Tree'], resolve)
     }
   ]
 })
