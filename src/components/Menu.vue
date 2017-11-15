@@ -2,9 +2,9 @@
   <div class='menu-wrap'>
     <router-link 
       v-for='page in pages' 
+      class="item"
       key='$index' 
-      :to="page.router" 
-      class="item">
+      :to="page.router" >
       {{page.name}}
     </router-link>
   </div>

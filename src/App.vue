@@ -1,18 +1,27 @@
 <template>
   <div id="app">
-    <Menu/>
+    <MyMenu/>
     <div class="content-wrap">
-      <router-view/>
+      <Tabs/>
+      <keep-alive>
+        <router-view/>
+      </keep-alive>
     </div>
   </div>
 </template>
 
 <script>
-import Menu from '@/components/Menu'
+import MyMenu from '@/components/Menu'
+import Tabs from '@/components/Tabs'
 export default {
   name: 'app',
+  data: function () {
+    return {
+      tabs: []
+    }
+  },
   components: {
-    Menu
+    MyMenu, Tabs
   }
 }
 </script>
@@ -35,6 +44,7 @@ body, html {
 }
 .content-wrap {
   margin-left: 200px;
+  height: 100%;
 }
 .router-links a {
   display: inline-block;

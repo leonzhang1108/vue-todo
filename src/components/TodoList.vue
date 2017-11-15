@@ -156,7 +156,6 @@ export default {
     color: #2c3e50;
     outline: none;
     border-radius: 15px;
-    margin-right: 10px;
     transition: border-color 0.2s ease;
     background-size: 20px;
     vertical-align: middle !important;
