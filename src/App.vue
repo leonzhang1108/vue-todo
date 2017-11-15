@@ -1,17 +1,28 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
+    <Menu/>
+    <div class="content-wrap">
+      <router-view/>
+    </div>
   </div>
 </template>
 
 <script>
+import Menu from '@/components/Menu'
 export default {
-  name: 'app'
+  name: 'app',
+  components: {
+    Menu
+  }
 }
 </script>
 
 <style>
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -19,8 +30,11 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-  max-width: 500px;
   margin: 0 auto;
+  height: 100%;
+}
+.content-wrap {
+  margin-left: 200px;
 }
 .router-links a {
   display: inline-block;

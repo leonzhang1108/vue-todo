@@ -140,7 +140,11 @@ export default {
     cursor: pointer;
   }
   .todo-list-form {
-    margin-top: 30px;
+    bottom: 10%;
+    left: 10%;
+    right: 10%;
+    top: 10%;
+    margin: auto;
   }
   .search-input{ 
     height: 30px;

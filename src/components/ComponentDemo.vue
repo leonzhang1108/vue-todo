@@ -1,12 +1,13 @@
 <template>
   <div>
     <TitleList :msgs="msgs">
-      <h1
+      <div
+        class="title"
         slot="msg"
         slot-scope="props"
       >
         parent{{props.index + 1}}: {{ props.content | capitalize }}
-      </h1>
+      </div>
     </TitleList>
     <ChildList 
       v-for="(msg, index) in msgs" 
@@ -65,3 +66,9 @@ export default {
   }
 }
 </script>
+<style>
+.title {
+  font-size: 35px;
+  font-weight: bold;
+}
+</style>

@@ -24,6 +24,10 @@ export default new Router({
       path: '/tree',
       name: 'Tree',
       component: resolve => require(['@/components/Tree'], resolve)
+    }, {
+      path: '/canvas',
+      name: 'Canvas',
+      component: resolve => require(['@/components/Canvas'], resolve)
     }
   ]
 })
